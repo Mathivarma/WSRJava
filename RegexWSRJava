@@ -1,0 +1,17 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class RegexTest {
+public static void main(String[] args) {
+	String word="US343354 - jhdjkhekfhjsdfjkhjkkk. US343359-jkhsdfjsdlf. DE893748 -fewfjkasd. DEU3433544-jkshdfjds.US456456-wefwefwewsfd.DE3626172-sdfsdfsdf.";
+	String[] ans=word.split("[^US\\d*|^DE\\d*]");
+	List<String> l = Arrays.asList(ans);
+	l=l.stream().filter(i->i.length()>0).distinct().collect(Collectors.toList());
+	l.forEach(System.out::println);
+List<String> US=l.stream().filter(a->a.matches("^US.*")).collect(Collectors.toList());
+List<String> DE=l.stream().filter(a->a.matches("^DE.*")).collect(Collectors.toList());
+	US.forEach(System.out::println);
+	DE.forEach(System.out::println);
+}
+}
